@@ -83,25 +83,15 @@ async Task<string> Load(string url)
 }
 
 
-//HtmlElement serializer = new HtmlElement();
-//var html = await serializer.Load("https://forum.netfree.link/category/1/073948073983073483073963073953073AA");
-//var dom
-//serializer.Serialize(html);
-//var result don. Query(Selector. FromString("ul.nav.navbar-nav"));
-//result.ToList().ForEach(e => Console.WriteLine(e.ToString()));
-//Console.ReadLine();
+var html = await Load("https://learn.malkabruk.co.il/");
 
-//var html = await Load("https://learn.malkabruk.co.il/");
-var html = await Load("https://forum.netfree.link/category/1/073948073983073483073963073953073AA");
 
 var clean = new Regex("\\s+").Replace(html, " ");
 var lines = new Regex("<(.*?>)").Split(clean).Where(l => l.Length > 0);
 var root = Serialize(lines.ToList());
-//string query = "ul li span a";
 
-//string query = "div header";
-string query = "ul.nav.navbar-nav";
 
+string query = "div header";
 
 var selector = Selector.FromQueryString(query);
 Console.Write(" selector: ");
